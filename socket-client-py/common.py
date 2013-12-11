@@ -77,8 +77,11 @@ class StopWatch(object):
         self.stop_time = None
 
     def stop(self):
+        u'''
+        result type is millisecond, NOT SECOND!!
+        '''
         self.stop_time = time.clock()
-        return self.stop_time - self.start_time
+        return (self.stop_time - self.start_time) * 1000
 
 class TimeHistoryContainer(object):
     def __init__(self):

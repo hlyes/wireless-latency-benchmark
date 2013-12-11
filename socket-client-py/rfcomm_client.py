@@ -34,12 +34,24 @@ print "connecting to \"%s\" on %s" % (name, host)
 sock=BluetoothSocket( RFCOMM )
 sock.connect((host, port))
 
-print "connected.  type stuff"
+#print "connected.  type stuff"
+msg_generator = common.EchoGenerator(maxcount=1000)
+history_container = common.TimeHistoryContainer()
 while True:
-    data = raw_input()
+    data = msg_generator()
     if len(data) == 0: 
     	break
+
+    watch = common.StopWatch()
     sock.send(data)
     data = sock.recv(1024)
+    latency = watch.stop()
+    history_container.append(latency)
+
     print "received [%s]" % data
+
 sock.close()
+
+latency_list = history_container.get_stats_list(reverse=False)
+for x in latency_list:
+	print x
