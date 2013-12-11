@@ -102,13 +102,16 @@ class TimeHistoryContainer(object):
             return time_list
 
 class EchoGenerator(object):
-    def __init__(self, fmt=None):
+    def __init__(self, fmt=None, maxcount=10):
         if not fmt:
             fmt = '%032d'
         self.fmt = fmt
         self.count = 1
+        self.maxcount = maxcount
 
     def __call__(self):
+        if self.maxcount < self.count:
+            return ''
         msg = self.fmt % self.count
         self.count += 1
         return msg

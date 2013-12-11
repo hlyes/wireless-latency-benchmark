@@ -28,7 +28,9 @@ print "Accepted connection from ", client_info
 try:
     while True:
         data = client_sock.recv(1024)
-        if len(data) == 0: break
+        if len(data) == 0: 
+        	break
+        client_sock.send(data)
         print "received [%s]" % data
 except IOError:
     pass

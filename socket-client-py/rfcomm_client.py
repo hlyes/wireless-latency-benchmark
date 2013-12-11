@@ -37,7 +37,9 @@ sock.connect((host, port))
 print "connected.  type stuff"
 while True:
     data = raw_input()
-    if len(data) == 0: break
+    if len(data) == 0: 
+    	break
     sock.send(data)
-
+    data = sock.recv(1024)
+    print "received [%s]" % data
 sock.close()

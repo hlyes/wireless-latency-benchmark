@@ -49,5 +49,11 @@ class EchoGeneratorTest(unittest.TestCase):
 		self.assertEqual('02 msg', generator())
 		self.assertEqual('03 msg', generator())
 
+	def test_call(self):
+		generator = common.EchoGenerator('%02d msg', 2)
+		self.assertEqual('01 msg', generator())
+		self.assertEqual('02 msg', generator())
+		self.assertEqual('', generator())
+
 if __name__ == "__main__":
 	unittest.main()
