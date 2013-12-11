@@ -16,7 +16,7 @@ def main():
     
     try:
         # Connect to server and send data
-        sock.connect((HOST, common.PORT))
+        sock.connect((HOST, common.BLUETOOTH_PORT))
         sock.sendall(data + "\n")
 
         # Receive data from the server and shut down

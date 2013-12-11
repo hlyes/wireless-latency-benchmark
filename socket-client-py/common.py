@@ -8,7 +8,8 @@ http://docs.python.org/2/library/socketserver.html
 import socket
 import sys
 
-PORT = 15225
+SOCKET_PORT = 15225
+RFCOMM_PORT = 3
 
 def show_help_server(msg=None):
 	if msg:
@@ -51,3 +52,18 @@ def is_valid_ipv4_address(address):
         return False
 
     return True
+
+def select_bluetooth_device(nearby_devices):
+    for i, (bdaddr, name) in enumerate(nearby_devices):
+        print "%d : %s <%s>" % (i, name, bdaddr)
+
+    selected_index = raw_input('select device : ')
+    try:
+        selected_index = int(selected_index)
+        selected_index = 0 if selected_index < 0 else selected_index
+        selected_index = len(nearby_devices) if selected_index >= len(nearby_devices) else len(nearby_devices)-1
+    except ValueError:
+        selected_index = 0
+
+    target_address, target_name = nearby_devices[selected_index]
+    return target_address, target_name

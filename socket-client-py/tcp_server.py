@@ -27,7 +27,7 @@ def main():
         return -1
         
     HOST = "0.0.0.0"
-    server = SocketServer.TCPServer((HOST, common.PORT), TCPEchoHandler)
+    server = SocketServer.TCPServer((HOST, common.BLUETOOTH_PORT), TCPEchoHandler)
     server.serve_forever()
     
 if __name__ == '__main__':

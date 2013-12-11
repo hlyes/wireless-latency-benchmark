@@ -23,7 +23,7 @@ def main():
     # Instead, data is directly sent to the recipient via sendto().
     #data = 'hello world'
     data = 'hel'
-    sock.sendto(data + '\n', (HOST, common.PORT))
+    sock.sendto(data + '\n', (HOST, common.BLUETOOTH_PORT))
 
     received = sock.recv(1024)
     print "Sent:     {}".format(data)

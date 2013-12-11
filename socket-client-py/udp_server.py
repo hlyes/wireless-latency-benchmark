@@ -24,7 +24,7 @@ def main():
         return -1
         
     HOST = "0.0.0.0"
-    server = SocketServer.UDPServer((HOST, common.PORT), UDPEchoHandler)
+    server = SocketServer.UDPServer((HOST, common.BLUETOOTH_PORT), UDPEchoHandler)
     server.serve_forever()
     
 if __name__ == '__main__':
