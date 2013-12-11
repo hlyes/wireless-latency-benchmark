@@ -5,6 +5,7 @@ https://wiki.python.org/moin/UdpCommunication
 http://docs.python.org/2/library/socketserver.html
 '''
 
+import time
 import socket
 import sys
 
@@ -66,3 +67,48 @@ def select_bluetooth_device(nearby_devices):
 
     target_address, target_name = nearby_devices[selected_index]
     return target_address, target_name
+
+class StopWatch(object):
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.start_time = time.clock()
+        self.stop_time = None
+
+    def stop(self):
+        self.stop_time = time.clock()
+        return self.stop_time - self.start_time
+
+class TimeHistoryContainer(object):
+    def __init__(self):
+        self.time_list = []
+
+    def append(self, dt):
+        self.time_list.append(dt)
+
+    def get_stats_list(self, remove_first_last=False, reverse=False):
+        u'''
+        sort time list
+        if remove_first_last enabled, remove smallest value and largest value
+        if reverse : True=>desc, False=>asc
+        '''
+        assert len(self.time_list) >= 2
+
+        time_list = sorted(self.time_list, reverse=reverse)
+        if remove_first_last:
+            return time_list[1:-1]
+        else:
+            return time_list
+
+class EchoGenerator(object):
+    def __init__(self, fmt=None):
+        if not fmt:
+            fmt = '%032d'
+        self.fmt = fmt
+        self.count = 1
+
+    def __call__(self):
+        msg = self.fmt % self.count
+        self.count += 1
+        return msg
