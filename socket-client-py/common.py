@@ -9,7 +9,8 @@ import socket
 import sys
 
 SOCKET_PORT = 15225
-RFCOMM_PORT = 3
+
+UUID = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
 
 def show_help_server(msg=None):
 	if msg:
@@ -60,8 +61,6 @@ def select_bluetooth_device(nearby_devices):
     selected_index = raw_input('select device : ')
     try:
         selected_index = int(selected_index)
-        selected_index = 0 if selected_index < 0 else selected_index
-        selected_index = len(nearby_devices) if selected_index >= len(nearby_devices) else len(nearby_devices)-1
     except ValueError:
         selected_index = 0
 
