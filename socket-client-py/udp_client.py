@@ -10,9 +10,9 @@ def main():
         return -1    
     
     '''
-	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	sock.sendto('test msg', (ip, PORT))
-	'''
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.sendto('test msg', (ip, PORT))
+    '''
     HOST = sys.argv[1]
 
     # SOCK_DGRAM is the socket type to use for UDP sockets
@@ -21,13 +21,27 @@ def main():
 
     # As you can see, there is no connect() call; UDP has no connections.
     # Instead, data is directly sent to the recipient via sendto().
-    #data = 'hello world'
-    data = 'hel'
-    sock.sendto(data + '\n', (HOST, common.BLUETOOTH_PORT))
+    msg_generator = common.EchoGenerator(maxcount=1000)
+    history_container = common.TimeHistoryContainer()
+    while True:
+        data = msg_generator()
+        if len(data) == 0: 
+            break
 
-    received = sock.recv(1024)
-    print "Sent:     {}".format(data)
-    print "Received: {}".format(received)
+        try:
+            watch = common.StopWatch()
+            sock.sendto(data, (HOST, common.SOCKET_PORT))
+            received = sock.recv(1024)
+            latency = watch.stop()
+            history_container.append(latency)
+            #print "received [%s]" % received
+        except socket.timeout:
+            #print 'timeout'
+            history_container.append(999)
+    
+    latency_list = history_container.get_stats_list(reverse=False)
+    for x in latency_list:
+        print x
         
 if __name__ == '__main__':
     main()

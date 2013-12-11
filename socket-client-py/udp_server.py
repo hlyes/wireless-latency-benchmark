@@ -15,16 +15,15 @@ class UDPEchoHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         data = self.request[0].strip()
         socket = self.request[1]
-        print "{} wrote:".format(self.client_address[0])
-        print data
         socket.sendto(data, self.client_address)
+        print "{} wrote:".format(self.client_address[0]), data
 
 def main():
     if not common.validate_server_argv():
         return -1
         
     HOST = "0.0.0.0"
-    server = SocketServer.UDPServer((HOST, common.BLUETOOTH_PORT), UDPEchoHandler)
+    server = SocketServer.UDPServer((HOST, common.SOCKET_PORT), UDPEchoHandler)
     server.serve_forever()
     
 if __name__ == '__main__':

@@ -10,6 +10,7 @@ import socket
 import sys
 
 SOCKET_PORT = 15225
+LOOP_COUNT = 1000
 
 UUID = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
 
@@ -107,7 +108,7 @@ class TimeHistoryContainer(object):
 class EchoGenerator(object):
     def __init__(self, fmt=None, maxcount=10):
         if not fmt:
-            fmt = '%032d'
+            fmt = '%031d\n'
         self.fmt = fmt
         self.count = 1
         self.maxcount = maxcount

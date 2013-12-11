@@ -13,12 +13,12 @@ server_sock.listen(1)
 
 port = server_sock.getsockname()[1]
 
-advertise_service( server_sock, "SampleServer",
-                   service_id = common.UUID,
-                   service_classes = [ common.UUID, SERIAL_PORT_CLASS ],
-                   profiles = [ SERIAL_PORT_PROFILE ], 
-#                   protocols = [ OBEX_UUID ] 
-                    )
+advertise_service(server_sock, "SampleServer",
+                  service_id = common.UUID,
+                  service_classes = [ common.UUID, SERIAL_PORT_CLASS ],
+                  profiles = [ SERIAL_PORT_PROFILE ], 
+                  #protocols = [ OBEX_UUID ] 
+                  )
                    
 print "Waiting for connection on RFCOMM channel %d" % port
 
@@ -29,9 +29,9 @@ try:
     while True:
         data = client_sock.recv(1024)
         if len(data) == 0: 
-        	break
+            break
         client_sock.send(data)
-        print "received [%s]" % data
+        print "received [%s]" % data.strip()
 except IOError:
     pass
 
