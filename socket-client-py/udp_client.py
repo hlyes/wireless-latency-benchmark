@@ -21,7 +21,7 @@ def main():
 
     # As you can see, there is no connect() call; UDP has no connections.
     # Instead, data is directly sent to the recipient via sendto().
-    msg_generator = common.EchoGenerator(maxcount=1000)
+    msg_generator = common.EchoGenerator(maxcount=common.LOOP_COUNT)
     history_container = common.TimeHistoryContainer()
     while True:
         data = msg_generator()
