@@ -9,7 +9,7 @@ class StopWatchTest(unittest.TestCase):
 		watch = common.StopWatch()
 		time.sleep(1)
 		dt = watch.stop()
-		self.assertAlmostEqual(dt, 1.0, places=2)
+		self.assertTrue(900 <= dt <= 1100)
 
 class TimeHistoryContainer_get_stats_list_Test(unittest.TestCase):
 	def test_remove_first_last_disable(self):
