@@ -1,6 +1,7 @@
 # wireless-latency-benchmark
 
 [![Build Status](https://travis-ci.org/if1live/wireless-latency-benchmark.png?branch=master)](https://travis-ci.org/if1live/wireless-latency-benchmark)
+[![Coverage Status](https://coveralls.io/repos/if1live/wireless-latency-benchmark/badge.png?branch=master)](https://coveralls.io/r/if1live/wireless-latency-benchmark?branch=master)
 
 wifi/bluetooth latency benchmark
 
