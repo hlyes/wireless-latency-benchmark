@@ -7,9 +7,8 @@ import time
 class StopWatchTest(unittest.TestCase):
 	def test_run(self):
 		watch = common.StopWatch()
-		time.sleep(1)
 		dt = watch.stop()
-		self.assertTrue(900 <= dt <= 1100)
+		self.assertTrue(dt < 10)
 
 class TimeHistoryContainer_get_stats_list_Test(unittest.TestCase):
 	def test_remove_first_last_disable(self):
