@@ -12,7 +12,7 @@ script: "nosetests benchmark"
 after_success:
   - pip install coverage
   - pip install coveralls
-  - coverage benchmark --with-coverage
+  - nosetests benchmark --with-coverage
   - coveralls
 
 branches:
