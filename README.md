@@ -1,5 +1,7 @@
 # wireless-latency-benchmark
 
+[![Build Status](https://travis-ci.org/if1live/wireless-latency-benchmark.png?branch=master)](https://travis-ci.org/if1live/wireless-latency-benchmark)
+
 wifi/bluetooth latency benchmark
 
 ## 개요
