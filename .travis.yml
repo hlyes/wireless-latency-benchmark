@@ -12,6 +12,7 @@ script: "nosetests benchmark"
 after_success:
   - pip install coverage
   - pip install coveralls
+  - pylint --rcfile=pylint.rc benchmark/*.py
   - nosetests benchmark --with-coverage
   - coveralls
 
