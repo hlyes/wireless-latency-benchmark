@@ -13,7 +13,7 @@ class StopWatchTest(unittest.TestCase):
 class TimeHistoryContainer_get_stats_list_Test(unittest.TestCase):
 	def test_remove_first_last_disable(self):
 		container = common.TimeHistoryContainer()
-		container.append(3)	# broken test
+		container.append(1)
 		container.append(2)
 		container.append(3)
 		container.append(4)
